@@ -43,7 +43,7 @@ def downloadvid():
 #Window Display
 window = Tk()
 window.title("YouTube Downloader")
-window.geometry("350x250")
+window.geometry("350x310")
 
 #set all contents to center
 window.columnconfigure(0,weight=1) 
@@ -81,5 +81,16 @@ dwlOpt.grid()
 #Download button
 downloadBtn = Button(window,text="Download",width=10,bg="blue",fg="white",cursor="hand2",command=downloadvid)
 downloadBtn.grid()
+
+space = Label(window,text="", font=("Sans Serif",10,"bold"))
+space.grid()
+
+
+devLabel = Label(window,text="Developed By:", font=("Sans Serif",13,"bold"))
+devLabel.grid()
+devName = Label(window,text="Kpegah Edem Christian", font=("Sans Serif",13,"bold"))
+devName.grid()
+devContact = Label(window,text="+233247254259", font=("Sans Serif",13,"bold"))
+devContact.grid()
 
 window.mainloop()
