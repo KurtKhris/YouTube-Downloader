@@ -44,12 +44,14 @@ def downloadvid():
 window = Tk()
 window.title("YouTube Downloader")
 window.geometry("350x310")
+icon = PhotoImage(file='C:/Users/kurtk\OneDrive/Desktop/DontOpen/Python/Projects/YouTube Downloader/youtube.png')
+window.iconphoto(True,icon)
 
 #set all contents to center
 window.columnconfigure(0,weight=1) 
 
 #Link label
-linkLabel = Label(window,text="Paste Link Here", font=("Sans Serif", 15))
+linkLabel = Label(window,text="Paste Link Here", font=("Comic Sans MS", 15))
 linkLabel.grid()
 
 #Link Entry Field
@@ -58,11 +60,11 @@ linkEntry = Entry(window,width=50,textvariable=linkEntry)
 linkEntry.grid()
 
 #Link error label
-linkError = Label(window,text="",fg="red",font=("Sans Serif",10))
+linkError = Label(window,text="",fg="red",font=("Comic Sans MS",10))
 linkError.grid()
 
 #File directory
-dirLabel = Label(window,text="Select file location", font=("Sans Serif",10,"bold"))
+dirLabel = Label(window,text="Select file location", font=("Comic Sans MS",10,"bold"))
 dirLabel.grid()
 dirButton = Button(window,width=10,bg="green",fg="white",cursor="hand2",text="Select folder",command=directory)
 dirButton.grid()
@@ -72,7 +74,7 @@ dirError = Label(window,text="",fg="red",font=("Sans Serif",10))
 dirError.grid()
 
 #Video file quality
-quaLabel = Label(window,text="Select video quality", font=("Sans Serif",10,"bold"))
+quaLabel = Label(window,text="Select video quality", font=("Comic Sans MS",10,"bold"))
 quaLabel.grid()
 opt = ["720p","480p","Audio Only"]
 dwlOpt = ttk.Combobox(window,values=opt)
@@ -82,15 +84,16 @@ dwlOpt.grid()
 downloadBtn = Button(window,text="Download",width=10,bg="blue",fg="white",cursor="hand2",command=downloadvid)
 downloadBtn.grid()
 
-space = Label(window,text="", font=("Sans Serif",10,"bold"))
+space = Label(window,text="", font=("Comic Sans MS",10,"bold"))
 space.grid()
 
 
-devLabel = Label(window,text="Developed By:", font=("Sans Serif",13,"bold"))
-devLabel.grid()
-devName = Label(window,text="Kpegah Edem Christian", font=("Sans Serif",13,"bold"))
+
+# devLabel = Label(window,text="Developed By: ", font=("Comic Sans MS",13,"bold"))
+# devLabel.grid()
+devName = Label(window,text="Copyright © 2021 Edem", font=("Comic Sans MS",13,"bold"))
 devName.grid()
-devContact = Label(window,text="+233247254259", font=("Sans Serif",13,"bold"))
-devContact.grid()
+# devContact = Label(window,text="+233247254259", font=("Comic Sans MS",13,"bold"))
+# devContact.grid()
 
 window.mainloop()
