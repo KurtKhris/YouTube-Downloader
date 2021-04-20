@@ -3,8 +3,6 @@ from tkinter import ttk
 from tkinter import filedialog
 from pytube import YouTube
 
-#Variable declarations
-folderName = ""
 
 #File directory function
 def directory():
@@ -44,7 +42,7 @@ def downloadvid():
 window = Tk()
 window.title("YouTube Downloader")
 window.geometry("350x310")
-icon = PhotoImage(file='C:/Users/kurtk\OneDrive/Desktop/DontOpen/Python/Projects/YouTube Downloader/youtube.png')
+icon = PhotoImage(file='C:/Users/kurtk/OneDrive/Desktop/DontOpen/Python/Projects/YouTube Downloader/youtube.png')
 window.iconphoto(True,icon)
 
 #set all contents to center

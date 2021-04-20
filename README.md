@@ -41,7 +41,7 @@ source env/bin/activate
 python -m pip install -r requirements.txt
 ```
 ##### 3. Try downloading your favorite music video:
-  To run the bot locally, run the following
+  To run the program locally, run the following
 
 ```bash
 python downloader.py
