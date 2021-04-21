@@ -6,6 +6,10 @@ import pafy
 import time
 
 
+
+folderName = ""
+#https://www.youtube.com/watch?v=gnJv0UdOC-Q
+
 #File directory function
 def directory():
     global folderName
@@ -19,7 +23,7 @@ def directory():
 def downloadvid():
     
     opts = dwlOpt.get()
-    url = linkEntry.get()
+    url = linkEntrys.get()
     video = pafy.new(url)
     linkDuration = video.length
     
@@ -58,11 +62,18 @@ def downloadvid():
     select.download(folderName)
     linkError.config(text="Download Completed!!",fg="green")
 
+#Function to Reset  
+def Reset():
+    linkEntry.set(" ")
+    dwlOpt.set(" ")
+    
+
 
 #Window Display
 window = Tk()
 window.title("YouTube Downloader")
 window.geometry("350x360")
+window.resizable(0,0)
 icon = PhotoImage(file='C:/Users/kurtk/OneDrive/Desktop/DontOpen/Python/Projects/YouTube Downloader/youtube.png')
 window.iconphoto(True,icon)
 
@@ -75,8 +86,8 @@ linkLabel.grid()
 
 #Link Entry Field
 linkEntry = StringVar()
-linkEntry = Entry(window,width=50,textvariable=linkEntry)
-linkEntry.grid()
+linkEntrys = Entry(window,width=50,textvariable=linkEntry)
+linkEntrys.grid()
 
 space = Label(window,text="", font=("Comic Sans MS",2,"bold"))
 space.grid()
@@ -112,20 +123,21 @@ opt = ["1080p","720p","480p","360p","240p","Audio Only"]
 dwlOpt = ttk.Combobox(window,values=opt)
 dwlOpt.grid()
 
+space = Label(window,text="", font=("Comic Sans MS",2,"bold"))
+space.grid()
+
 #Download button
-downloadBtn = Button(window,text="Download",width=10,bg="blue",fg="white",cursor="hand2",command=downloadvid)
-downloadBtn.grid()
+downloadBtn = Button(window,text="Download",width=7,bg="blue",fg="white",cursor="hand2",command=downloadvid)
+downloadBtn.place(x=105 , y =275)
+
+resetBtn = Button(window,text="Reset",width=7,bg="grey",fg="white",cursor="hand2",command=Reset)
+resetBtn.place(x=183 , y =275)
 
 space = Label(window,text="", font=("Comic Sans MS",10,"bold"))
 space.grid()
 
 
-
-# devLabel = Label(window,text="Developed By: ", font=("Comic Sans MS",13,"bold"))
-# devLabel.grid()
 devName = Label(window,text="Copyright © 2021 Edem", font=("Comic Sans MS",13,"bold"))
 devName.grid()
-# devContact = Label(window,text="+233247254259", font=("Comic Sans MS",13,"bold"))
-# devContact.grid()
 
 window.mainloop()
