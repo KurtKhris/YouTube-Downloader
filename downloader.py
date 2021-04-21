@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
 from pytube import YouTube
+import pafy
+import time
 
 
 #File directory function
@@ -15,8 +17,21 @@ def directory():
 
 #Video download function
 def downloadvid():
+    
     opts = dwlOpt.get()
     url = linkEntry.get()
+    video = pafy.new(url)
+    linkDuration = video.length
+    
+    download = 0
+    speed = 1
+    while(download<linkDuration):
+        time.sleep(1)
+        bar['value'] +=(speed/linkDuration)*100
+        download+=speed
+        percent.set(str(int((download/linkDuration)*100))+"%")
+        workdone.set(str(download)+"/"+ str(linkDuration)+" completed")
+        window.update_idletasks()
 
     if(len(url) > 1):
        linkError.config(text="")
@@ -25,8 +40,14 @@ def downloadvid():
        if(opts == opt[0]):
            select = ytLink.streams.filter(progressive=True).first()
        elif(opts == opt[1]):
-           select = ytLink.streams.filter(progressive=True,file_extension='mp4').last()
+           select = ytLink.streams.filter(progressive=True,file_extension='mkv').first()
        elif(opts == opt[2]):
+           select = ytLink.streams.filter(progressive=True,file_extension='mkv').first()
+       elif(opts == opt[3]):
+           select = ytLink.streams.filter(progressive=True,file_extension='mp4').last()
+       elif(opts == opt[4]):
+           select = ytLink.streams.filter(progressive=True,file_extension='mp4').last()
+       elif(opts == opt[5]):
            select = ytLink.streams.filter(only_audio=True).first()
        else:
            linkError.config(text="Select video quality",fg="red")
@@ -41,7 +62,7 @@ def downloadvid():
 #Window Display
 window = Tk()
 window.title("YouTube Downloader")
-window.geometry("350x310")
+window.geometry("350x360")
 icon = PhotoImage(file='C:/Users/kurtk/OneDrive/Desktop/DontOpen/Python/Projects/YouTube Downloader/youtube.png')
 window.iconphoto(True,icon)
 
@@ -56,6 +77,19 @@ linkLabel.grid()
 linkEntry = StringVar()
 linkEntry = Entry(window,width=50,textvariable=linkEntry)
 linkEntry.grid()
+
+space = Label(window,text="", font=("Comic Sans MS",2,"bold"))
+space.grid()
+
+#Progress bar
+percent = StringVar()
+workdone = StringVar()
+bar = ttk.Progressbar(window,orient=HORIZONTAL,length=300)
+bar.grid()
+
+percentage = Label(window,textvariable=percent).grid()
+work = Label(window,textvariable=workdone).grid()
+
 
 #Link error label
 linkError = Label(window,text="",fg="red",font=("Comic Sans MS",10))
@@ -74,7 +108,7 @@ dirError.grid()
 #Video file quality
 quaLabel = Label(window,text="Select video quality", font=("Comic Sans MS",10,"bold"))
 quaLabel.grid()
-opt = ["720p","480p","Audio Only"]
+opt = ["1080p","720p","480p","360p","240p","Audio Only"]
 dwlOpt = ttk.Combobox(window,values=opt)
 dwlOpt.grid()
 
