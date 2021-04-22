@@ -5,8 +5,6 @@ from pytube import YouTube
 import pafy
 import time
 
-
-
 folderName = ""
 #https://www.youtube.com/watch?v=gnJv0UdOC-Q
 
@@ -66,6 +64,10 @@ def downloadvid():
 def Reset():
     linkEntry.set(" ")
     dwlOpt.set(" ")
+    linkError.config(text=" ")
+    percentage.config(text=" ")
+    work.config(" ")
+    dirLabel.config(" ")    
     
 
 
@@ -98,8 +100,10 @@ workdone = StringVar()
 bar = ttk.Progressbar(window,orient=HORIZONTAL,length=300)
 bar.grid()
 
-percentage = Label(window,textvariable=percent).grid()
-work = Label(window,textvariable=workdone).grid()
+percentage = Label(window,textvariable=percent)
+percentage.grid()
+work = Label(window,textvariable=workdone)
+work.grid()
 
 
 #Link error label
