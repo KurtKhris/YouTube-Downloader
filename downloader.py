@@ -4,6 +4,7 @@ import tkinter
 from pytube import YouTube
 from tkinter import messagebox,filedialog
 from tkinter.ttk import *
+import os
 
 #Creating an object of Tk()
 window = Tk()
@@ -17,42 +18,21 @@ window.iconphoto(True,icon)
 
 #Variables
 downloadPath = StringVar()
+downloadPath.set(os.getcwd())
 vidLink = StringVar()
 #https://www.youtube.com/watch?v=gnJv0UdOC-Q
-
-# percent = StringVar()
-# workdone = StringVar()
 
 # Defining Browse() to select the directory to save the video
 def dirBrowse():
     downloadDir = filedialog.askdirectory()
-    if (len(downloadDir) > 1):
-        downloadPath.set(downloadDir)
-    else:
-        messagebox.showwarning("YouTube Downloader", "Please select directory")
-
-
+    downloadPath.set(downloadDir)
+    
 
 # Defining Download() to download the video
 def Download():
+    
     # getting user input Youtube Link
     url = vidLink.get()
-    # video = pafy.new(url)
-    # streams = video.allstreams
-    # stream = streams[5]
-    # value = stream.get_filesize()
-    # print(str(value))
-
-    # speed = 1000
-    # dwnl = 0
-
-    # while(dwnl<int(value)):
-    #     time.sleep(0.05)
-    #     bar['value'] +=(speed/value)*100
-    #     dwnl+=speed
-    #     percent.set(str(int((dwnl/value)*100))+"%")
-    #     workdone.set(str(dwnl)+"/"+ str(value)+" completed")
-    #     window.update_idletasks()
 
     if(len(url) > 1):
 
@@ -72,7 +52,12 @@ def Download():
         messagebox.showinfo("YouTube Downloader","Video Downloaded Successfully!! and saved to\n"+ downloadFolder)
 
     else:
-        messagebox.showwarning("YouTube Downloader", "Please Enter YouTube link and Select Directory.")
+        messagebox.showwarning("YouTube Downloader", "Please Enter YouTube link.")
+
+    # if (len(downloadFolder) > 1):
+    #     downloadPath.set(downloadFolder)
+    # else:
+    #     messagebox.showwarning("YouTube Downloader", "Please select directory")
 
 # Defining widgets() function to create necessary tkinter widgets
 def widgets():
@@ -97,18 +82,11 @@ def widgets():
     downloadBtn = tkinter. Button(window,text="Download",cursor="hand2",command=Download,width=7,bg="blue",fg="white",font=("Comic Sans MS",10,"bold"))
     downloadBtn.grid(row=3,column=1,pady=3,padx=3)
 
-    # percentage = tkinter. Label(window,textvariable=percent)
-    # percentage.grid(row=5,column=1,pady=3,padx=3)
-
-    # work = tkinter. Label(window,textvariable=workdone)
-    # work.grid(row=6,column=1,pady=3,padx=3)
-
     devName = tkinter. Label(window,text="Copyright © 2021 Edem", font=("Comic Sans MS",13,"bold"))
     devName.grid(row=7,column=1,pady=3,padx=3)
 
 widgets()
-# bar = Progressbar(window,orient=HORIZONTAL,length=200)
-# bar.grid(row=4,column=1,pady=3,padx=3)
+
 
 # Defining infinite loop to run application
 window.mainloop()
