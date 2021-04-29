@@ -16,6 +16,7 @@ window.title("YouTube Downloader")
 icon = PhotoImage(file='C:/Users/kurtk/OneDrive/Desktop/DontOpen/Python/Projects/YouTube Downloader/youtube.png')
 window.iconphoto(True,icon)
 
+
 #Variables
 downloadPath = StringVar()
 downloadPath.set(os.getcwd())
@@ -54,11 +55,6 @@ def Download():
     else:
         messagebox.showwarning("YouTube Downloader", "Please Enter YouTube link.")
 
-    # if (len(downloadFolder) > 1):
-    #     downloadPath.set(downloadFolder)
-    # else:
-    #     messagebox.showwarning("YouTube Downloader", "Please select directory")
-
 # Defining widgets() function to create necessary tkinter widgets
 def widgets():
     
@@ -86,6 +82,14 @@ def widgets():
     devName.grid(row=7,column=1,pady=3,padx=3)
 
 widgets()
+
+#exit dialog
+def on_close():
+    response=messagebox.askyesno('YouTube Downloader','Are you sure you want to exit?')
+    if response:
+        window.destroy()
+
+window.protocol('WM_DELETE_WINDOW',on_close)
 
 
 # Defining infinite loop to run application
